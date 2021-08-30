@@ -1,8 +1,13 @@
 Class {
 	#name : #PayrollMain,
-	#superclass : #Object,
+	#superclass : #CommandLineHandler,
 	#category : #'Payroll-Config'
 }
+
+{ #category : #accessing }
+PayrollMain class >> commandName [
+	^ 'startPayroll'
+]
 
 { #category : #'as yet unclassified' }
 PayrollMain class >> start [
@@ -11,4 +16,15 @@ PayrollMain class >> start [
 	WAAdmin defaultServerManager startAll.
 	WAAdmin defaultDispatcher defaultName: 'payroll'.
 	
+]
+
+{ #category : #activation }
+PayrollMain >> activate [
+
+	ZnZincServerAdaptor new. "Self registered..."
+	WAAdmin defaultServerManager startAll.
+	WAAdmin defaultDispatcher defaultName: 'payroll'.
+	
+	Smalltalk snapshot: false andQuit: false.
+
 ]
