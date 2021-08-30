@@ -7,7 +7,8 @@ Class {
 { #category : #'as yet unclassified' }
 PayrollMain class >> start [
 
-	WAAdmin defaultServerManager register: ZnZincServerAdaptor new.
-	WAAdmin defaultServerManager startAll. 
+	ZnZincServerAdaptor new. "Self registered..."
+	
+	WAAdmin defaultServerManager startAll.
 	
 ]
