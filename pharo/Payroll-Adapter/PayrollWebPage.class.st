@@ -8,7 +8,7 @@ Class {
 PayrollWebPage class >> initialize [ 
 
 	WAAdmin unregister: 'welcome'.
-	self registerToDevelopment: 'welcome'.
+	self registerToDevelopment: 'payroll'.
 	
 
 ]

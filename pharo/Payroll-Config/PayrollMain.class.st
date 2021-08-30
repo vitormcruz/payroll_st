@@ -8,7 +8,7 @@ Class {
 PayrollMain class >> start [
 
 	ZnZincServerAdaptor new. "Self registered..."
-	
 	WAAdmin defaultServerManager startAll.
+	WAAdmin defaultDispatcher defaultName: 'payroll'.
 	
 ]
