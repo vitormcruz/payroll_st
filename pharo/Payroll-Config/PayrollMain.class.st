@@ -9,15 +9,6 @@ PayrollMain class >> commandName [
 	^ 'startPayroll'
 ]
 
-{ #category : #'as yet unclassified' }
-PayrollMain class >> start [
-
-	ZnZincServerAdaptor new. "Self registered..."
-	WAAdmin defaultServerManager startAll.
-	WAAdmin defaultDispatcher defaultName: 'payroll'.
-	
-]
-
 { #category : #activation }
 PayrollMain >> activate [
 
