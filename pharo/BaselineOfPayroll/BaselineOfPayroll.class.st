@@ -20,7 +20,7 @@ BaselineOfPayroll >> baseline: spec [
 		
   	   baseline: 'MaterialDesignLite'	with: [ spec repository: 'github://DuneSt/MaterialDesignLite:v2.2.4/src'; loads: #(core) ];
 		
-		project:'Seaside-Core' copyFrom: 'Seaside3' with: [ spec loads: #('Core' 'JSON' 'Email' 'Javascript' 'JQuery' 'JQueryUI' ) ];
+		project:'Seaside-Core' copyFrom: 'Seaside3' with: [ spec loads: #('Core' 'JSON' 'Email' 'Javascript' 'JQuery' 'JQueryUI' 'Zinc' ) ];
 		project:'Seaside-Dev' copyFrom: 'Seaside3' with: [ spec loads: #(default) ];
 										
 		
