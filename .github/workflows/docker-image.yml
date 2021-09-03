@@ -34,7 +34,7 @@ jobs:
       - name: Run Tests Payroll ST WEB
         run: |
           pharo /opt/pharo/Pharo.image eval Employee class;
-          pharo /opt/pharo/Pharo.image st --save --quit loadForTest.st;
+          pharo /opt/pharo/Pharo.image st --save --quit loadForTesting.st;
           pharo /opt/pharo/Pharo.image test Payroll-Tests|Payroll-AcceptanceCriteria --junit-xml-output --fail-on-failure --fail-on-error;
   
 
