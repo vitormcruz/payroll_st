@@ -16,7 +16,7 @@ BaselineOfPayroll >> baseline: spec [
  	   baseline: 'Buoy' with: [ spec repository: 'github://ba-st/Buoy:v6.1.0/source' ];
 		project: 'Buoy-Tests' copyFrom: 'Buoy' with: [ spec loads: #('Dependent-SUnit-Extensions') ];
 		
- 	   baseline: 'Tome' with: [ spec repository: 'github://vitormcruz/tome/pharo'; loads: #(core) ];
+ 	   baseline: 'Tome' with: [ spec repository: 'github://vitormcruz/tome:develop/pharo'; loads: #(core) ];
 	
 		baseline:'Seaside3' with: [ spec repository: 'github://SeasideSt/Seaside:v3.4.5/repository' ];
 		
