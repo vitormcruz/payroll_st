@@ -36,7 +36,8 @@ BaselineOfPayroll >> baseline: spec [
 		
 		group: 'default' with: #('dev');
 		group: 'core' with: #('Payroll-Config');
-		group: 'dev' with: #(core 'Seaside-Dev' 'Payroll-Tests' 'Payroll-AcceptanceCriteria')
+		group: 'test' with: #('Payroll-Tests' 'Payroll-AcceptanceCriteria');
+		group: 'dev' with: #(core 'Seaside-Dev' test)
 	].
 		
 
