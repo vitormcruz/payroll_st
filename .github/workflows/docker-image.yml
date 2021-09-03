@@ -31,12 +31,10 @@ jobs:
         with:
           name: payroll-st-web-bin
           path: /opt/pharo/
-      - name: Run Tests Payroll ST WEB
-        run: |
-          pharo /opt/pharo/Pharo.image eval Employee class;
-          pharo /opt/pharo/Pharo.image st --save --quit loadForTesting.st;
-          pharo /opt/pharo/Pharo.image test Payroll-Tests|Payroll-AcceptanceCriteria --junit-xml-output --fail-on-failure --fail-on-error;
-  
+      - name: Load Tests
+        run: pharo /opt/pharo/Pharo.image st --save --quit loadForTesting.st;
+      - name: Run Tests of Payroll ST WEB
+        run: pharo /opt/pharo/Pharo.image test Payroll-Tests|Payroll-AcceptanceCriteria --junit-xml-output --fail-on-failure --fail-on-error;
 
   Deploy:
       runs-on: ubuntu-latest
