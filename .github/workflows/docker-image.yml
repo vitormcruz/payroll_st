@@ -24,9 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     container: vitormcruz/pharo:9
     steps:
-      - uses: actions/checkout@v2.0.10
+      - uses: actions/checkout@v2
       - name: Download math result for job 2
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v2.0.10
         with:
           name: payroll-st-web-bin
           path: /opt/pharo/
