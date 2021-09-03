@@ -33,6 +33,7 @@ jobs:
           path: /opt/pharo/
       - name: Run Tests Payroll ST WEB
         run: |
+          pharo /opt/pharo/Pharo.image eval Employee class;
           pharo /opt/pharo/Pharo.image eval --save "Metacello new repository: 'tonel://pharo'; baseline: 'Payroll'; onConflictUseIncoming; load: #(test)";
           pharo /opt/pharo/Pharo.image test Payroll-Tests|Payroll-AcceptanceCriteria --junit-xml-output --fail-on-failure --fail-on-error;
   
