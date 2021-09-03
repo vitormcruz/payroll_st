@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build Payroll ST WEB Production Bin
         run: |
-          pharo /opt/pharo/Pharo.image st --save loadForProduction.st;
+          pharo /opt/pharo/Pharo.image st --save --quit loadForProduction.st;
           
       - name: Save builded payroll-st-web-bin
         uses: actions/upload-artifact@v2.2.4
@@ -34,7 +34,7 @@ jobs:
       - name: Run Tests Payroll ST WEB
         run: |
           pharo /opt/pharo/Pharo.image eval Employee class;
-          pharo /opt/pharo/Pharo.image st --save loadForTest.st;
+          pharo /opt/pharo/Pharo.image st --save --quit loadForTest.st;
           pharo /opt/pharo/Pharo.image test Payroll-Tests|Payroll-AcceptanceCriteria --junit-xml-output --fail-on-failure --fail-on-error;
   
 
