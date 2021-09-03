@@ -6,4 +6,4 @@ Metacello new
 			includesSubstring: 'Seaside:v3.4.5') ifTrue: [ ex useIncoming  ] ];
 	onUpgrade: [ :ex | ex useIncoming ];
 	onDowngrade: [ :ex | ex useLoaded ];
-	load: #(core)
+	load: #(test)
