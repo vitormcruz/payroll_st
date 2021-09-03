@@ -5,26 +5,53 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
 
   Build:
-
     runs-on: ubuntu-latest
-
+    container: vitormcruz/pharo:9
     steps:
-    - uses: actions/checkout@v2
-        
-    - name: Login to DockerHub
-      uses: docker/login-action@v1 
-      with:
-        username: ${{ secrets.DOCKER_HUB_USER }}
-        password: ${{ secrets.DOCKER_HUB_TOKEN }}
-        
-  #Test:
+      - uses: actions/checkout@v2
+      - name: Build Payroll ST WEB Production Bin
+        run: |
+          pharo /opt/pharo/Pharo.image eval --save "Metacello new repository: 'tonel://pharo'; baseline: 'Payroll'; onConflictUseIncoming; load: #(core)";
+          
+      - name: Save Binary
+        uses: actions/upload-artifact@v2
+        with:
+          name: payroll-st-web-bin
+          path: /opt/pharo/Pharo.image
+                 
+  Test:
+    runs-on: ubuntu-latest
+    container: vitormcruz/pharo:9
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download math result for job 2
+        uses: actions/download-artifact@v2
+        with:
+          name: payroll-st-web-bin
+          path: /opt/pharo/
+      - name: Run Tests Payroll ST WEB
+        run: |
+          pharo /opt/pharo/Pharo.image eval --save "Metacello new repository: 'tonel://pharo'; baseline: 'Payroll'; onConflictUseIncoming; load: #(test)";
+          pharo /opt/pharo/Pharo.image test Payroll-Tests|Payroll-AcceptanceCriteria --junit-xml-output --fail-on-failure --fail-on-error;
+  
 
   Deploy:
-    - name: Build Docker Image
-      uses: docker/build-push-action@v2
-      with:
-        push: true
-        tags: vitormcruz/payroll-st-web/latest
+      runs-on: ubuntu-latest
+      steps:
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: payroll-st-web-bin
+
+      - uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: vitormcruz/payroll-st-web/latest
 
 
 
