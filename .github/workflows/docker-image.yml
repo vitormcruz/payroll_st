@@ -13,7 +13,7 @@ jobs:
         run: |
           pharo /opt/pharo/Pharo.image eval --save "Metacello new repository: 'tonel://pharo'; baseline: 'Payroll'; onConflictUseIncoming; load: #(core)";
           
-      - name: Save Binary
+      - name: Save builded payroll-st-web-bin
         uses: actions/upload-artifact@v2.2.4
         with:
           name: payroll-st-web-bin
@@ -23,9 +23,10 @@ jobs:
   Test:
     runs-on: ubuntu-latest
     container: vitormcruz/pharo:9
+    needs: [Build]
     steps:
       - uses: actions/checkout@v2
-      - name: Download math result for job 2
+      - name: Load builded payroll-st-web-bin
         uses: actions/download-artifact@v2.0.10
         with:
           name: payroll-st-web-bin
@@ -38,6 +39,7 @@ jobs:
 
   Deploy:
       runs-on: ubuntu-latest
+      needs: [Test]
       steps:
       - name: Login to DockerHub
         uses: docker/login-action@v1 
