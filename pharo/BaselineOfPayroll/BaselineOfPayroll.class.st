@@ -15,6 +15,8 @@ BaselineOfPayroll >> baseline: spec [
 		
  	   baseline: 'Buoy' with: [ spec repository: 'github://ba-st/Buoy:v6.1.0/source' ];
 		project: 'Buoy-Tests' copyFrom: 'Buoy' with: [ spec loads: #('Dependent-SUnit-Extensions') ];
+		
+ 	   baseline: 'Tome' with: [ spec repository: 'github://ba-st/Buoy:v6.1.0/source'; loads: #(core) ];
 	
 		baseline:'Seaside3' with: [ spec repository: 'github://SeasideSt/Seaside:v3.4.5/repository' ];
 		
@@ -32,7 +34,7 @@ BaselineOfPayroll >> baseline: spec [
 		package: 'Payroll-Config' with: [ spec requires: #('Payroll-Core' 'Payroll-Adapter') ];
 		
 		package: 'Payroll-Tests' with: [ spec requires: #('Payroll-Core' 'Buoy-Tests') ];
-		package: 'Payroll-AcceptanceCriteria' with: [ spec requires: #('Payroll-Core' 'Buoy-Tests') ];
+		package: 'Payroll-AcceptanceCriteria' with: [ spec requires: #('Payroll-Core' 'Buoy-Tests' 'Tome') ];
 		
 		group: 'default' with: #('dev');
 		group: 'core' with: #('Payroll-Config');
