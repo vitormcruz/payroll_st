@@ -1,5 +1,5 @@
 Metacello new
-	repository: 'tonel://E:\Projetos\payroll_st\pharo';
+	repository: 'tonel://pharo';
 	baseline: 'Payroll';
 	onConflict: [ :ex :pa :pb |
 		((pb repositoryDescriptions joinUsing: ' ')
