@@ -34,7 +34,9 @@ jobs:
       - name: Load Tests
         run: pharo /opt/pharo/Pharo.image st --save --quit loadForTesting.st;
       - name: Run Tests of Payroll ST WEB
-        run: pharo /opt/pharo/Pharo.image test Payroll-Tests|Payroll-AcceptanceCriteria --junit-xml-output --fail-on-failure --fail-on-error;
+        run: |
+          pharo /opt/pharo/Pharo.image eval ManageEmployees class;
+          pharo /opt/pharo/Pharo.image test Payroll-Tests|Payroll-AcceptanceCriteria --junit-xml-output --fail-on-failure --fail-on-error;
 
   Deploy:
       runs-on: ubuntu-latest
