@@ -36,9 +36,7 @@ jobs:
         run: pharo /opt/pharo/Pharo.image st --save --quit loadForTesting.st;
 
       - name: Run Tests of Payroll ST WEB
-        run: |
-          pharo /opt/pharo/Pharo.image eval ManageEmployees class;
-          pharo /opt/pharo/Pharo.image test Payroll* --junit-xml-output --fail-on-failure --fail-on-error;
+        run: pharo /opt/pharo/Pharo.image test Payroll* --junit-xml-output --fail-on-failure --fail-on-error;
 
   Deploy:
       runs-on: ubuntu-latest
@@ -49,15 +47,14 @@ jobs:
           with:
             name: payroll-st-web-bin
 
+        - name: Trace
+          run: ls -la
+
         - name: Login to DockerHub
           uses: docker/login-action@v1
           with:
             username: ${{ secrets.DOCKER_HUB_USER }}
             password: ${{ secrets.DOCKER_HUB_TOKEN }}
-
-        - uses: actions/download-artifact@v2.0.10
-          with:
-            name: payroll-st-web-bin
 
         - uses: docker/build-push-action@v2
           with:
