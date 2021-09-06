@@ -30,9 +30,11 @@ jobs:
         uses: actions/download-artifact@v2.0.10
         with:
           name: payroll-st-web-bin
-          path: /opt/pharo/
+          path: /opt/                 #Should be /opt/pharo/, but will use a new image since Metacello cannot load Baselines incrementally. Will think later what to do about this
+
       - name: Load Tests
         run: pharo /opt/pharo/Pharo.image st --save --quit loadForTesting.st;
+
       - name: Run Tests of Payroll ST WEB
         run: |
           pharo /opt/pharo/Pharo.image eval ManageEmployees class;
@@ -42,20 +44,26 @@ jobs:
       runs-on: ubuntu-latest
       needs: [Test]
       steps:
-      - name: Login to DockerHub
-        uses: docker/login-action@v1 
-        with:
-          username: ${{ secrets.DOCKER_HUB_USER }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+        - name: Load builded payroll-st-web-bin
+          uses: actions/download-artifact@v2.0.10
+          with:
+            name: payroll-st-web-bin
+            path: /opt/pharo/
 
-      - uses: actions/download-artifact@v2.0.10
-        with:
-          name: payroll-st-web-bin
+        - name: Login to DockerHub
+          uses: docker/login-action@v1
+          with:
+            username: ${{ secrets.DOCKER_HUB_USER }}
+            password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: vitormcruz/payroll-st-web/latest
+        - uses: actions/download-artifact@v2.0.10
+          with:
+            name: payroll-st-web-bin
+
+        - uses: docker/build-push-action@v2
+          with:
+            push: true
+            tags: vitormcruz/payroll-st-web/latest
 
 
 
