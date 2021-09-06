@@ -48,7 +48,6 @@ jobs:
           uses: actions/download-artifact@v2.0.10
           with:
             name: payroll-st-web-bin
-            path: /opt/pharo/
 
         - name: Login to DockerHub
           uses: docker/login-action@v1
