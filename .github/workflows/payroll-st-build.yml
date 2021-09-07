@@ -48,7 +48,7 @@ jobs:
           uses: actions/download-artifact@v2.0.10
           with:
             name: payroll-st-web-bin
-            path: ${{ GITHUB_WORKSPACE }}//payroll_st//
+            path: ${{ env.GITHUB_WORKSPACE }}//payroll_st//
 
         - name: Trace
           run: ls -la
