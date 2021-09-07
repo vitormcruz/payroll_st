@@ -16,19 +16,9 @@ jobs:
           path: /opt/pharo/pharo-local/
           key: Pharo-local-${{ hashFiles('**/BaselineOfPayroll.class.st') }}
           
-      - name: Trace Pharo-local
-        run: |
-          ls -la /opt/pharo/pharo-local/package-cache;
-          ls -la /opt/pharo/pharo-local/iceberg; 
-
       - name: Build Payroll ST WEB Production Bin
         run: pharo /opt/pharo/Pharo.image st --save --quit loadForProduction.st;
-        
-      - name: Trace Pharo-local after loading
-        run: |
-          ls -la /opt/pharo/pharo-local/package-cache;
-          ls -la /opt/pharo/pharo-local/iceberg; 
-          
+                
       - name: Save builded payroll-st-web-bin
         uses: actions/upload-artifact@v2.2.4
         with:
@@ -49,11 +39,6 @@ jobs:
         with:
           path: /opt/pharo/pharo-local/
           key: Pharo-local-${{ hashFiles('**/BaselineOfPayroll.class.st') }}
-          
-      - name: Trace Pharo-local 
-        run: |
-          ls -la /opt/pharo/pharo-local/package-cache;
-          ls -la /opt/pharo/pharo-local/iceberg; 
 
       - name: Load builded payroll-st-web-bin
         uses: actions/download-artifact@v2.0.10
