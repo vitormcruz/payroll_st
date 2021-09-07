@@ -9,7 +9,6 @@ jobs:
     container: vitormcruz/pharo:9
     steps:
       - uses: actions/checkout@v2
-      - name: Build Payroll ST WEB Production Bin
 
       - name: Cache Pharo-Local
         uses: actions/cache@v1
@@ -17,7 +16,7 @@ jobs:
           path: /opt/pharo/pharo-local/
           key: Pharo-local-${{ hashFiles('**/BaselineOfPayroll.class.st') }}
 
-      - name: Build payroll-st Bin
+      - name: Build Payroll ST WEB Production Bin
         run: pharo /opt/pharo/Pharo.image st --save --quit loadForProduction.st;
           
       - name: Save builded payroll-st-web-bin
