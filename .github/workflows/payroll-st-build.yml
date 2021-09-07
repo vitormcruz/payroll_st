@@ -19,6 +19,7 @@ jobs:
           name: payroll-st-web-bin
           path: /opt/pharo/Pharo.image
           if-no-files-found: error
+          retention-days: 1
                  
   Test:
     runs-on: ubuntu-latest
@@ -48,7 +49,6 @@ jobs:
           uses: actions/download-artifact@v2.0.10
           with:
             name: payroll-st-web-bin
-            path: payroll_st/
 
         - name: Trace
           run: ls -la
