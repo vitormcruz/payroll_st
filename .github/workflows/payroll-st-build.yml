@@ -10,8 +10,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build Payroll ST WEB Production Bin
-        run: |
-          pharo /opt/pharo/Pharo.image st --save --quit loadForProduction.st;
+
+      - name: Cache Pharo-Local
+        uses: actions/cache@v1
+        with:
+          path: /opt/pharo/pharo-local/
+          key: Pharo-local-${{ hashFiles('**/BaselineOfPayroll.class.st') }}
+
+       - name: Build payroll-st Bin
+         run: pharo /opt/pharo/Pharo.image st --save --quit loadForProduction.st;
           
       - name: Save builded payroll-st-web-bin
         uses: actions/upload-artifact@v2.2.4
@@ -27,6 +34,13 @@ jobs:
     needs: [Build]
     steps:
       - uses: actions/checkout@v2
+
+      - name: Cache Pharo-Local
+        uses: actions/cache@v1
+        with:
+          path: /opt/pharo/pharo-local/
+          key: Pharo-local-${{ hashFiles('**/BaselineOfPayroll.class.st') }}
+
       - name: Load builded payroll-st-web-bin
         uses: actions/download-artifact@v2.0.10
         with:
