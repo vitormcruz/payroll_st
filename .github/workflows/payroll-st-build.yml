@@ -17,8 +17,8 @@ jobs:
           path: /opt/pharo/pharo-local/
           key: Pharo-local-${{ hashFiles('**/BaselineOfPayroll.class.st') }}
 
-       - name: Build payroll-st Bin
-         run: pharo /opt/pharo/Pharo.image st --save --quit loadForProduction.st;
+      - name: Build payroll-st Bin
+        run: pharo /opt/pharo/Pharo.image st --save --quit loadForProduction.st;
           
       - name: Save builded payroll-st-web-bin
         uses: actions/upload-artifact@v2.2.4
