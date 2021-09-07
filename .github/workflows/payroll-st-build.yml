@@ -42,7 +42,7 @@ jobs:
       runs-on: ubuntu-latest
       needs: [Test]
       env:
-        PAYROLL_PATH: ${{ env.GITHUB_WORKSPACE }}//payroll_st//
+        PAYROLL_PATH: $GITHUB_WORKSPACE//payroll_st//
       steps:
         - uses: actions/checkout@v2
 
@@ -50,7 +50,7 @@ jobs:
           uses: actions/download-artifact@v2.0.10
           with:
             name: payroll-st-web-bin
-            path: ${{ PAYROLL_PATH }}
+            path: ${{ env.PAYROLL_PATH }}
 
         - name: Trace
           run: ls -la
