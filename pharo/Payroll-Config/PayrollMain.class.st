@@ -12,10 +12,14 @@ PayrollMain class >> commandName [
 { #category : #activation }
 PayrollMain >> activate [
 
-	ZnZincServerAdaptor new. "Self registered..."
+	| adaptor |
+	
+	adaptor := ZnZincServerAdaptor new. "Self registered..."
+	
+	adaptor port: (Smalltalk os environment at: #PORT ifAbsent: 8080) .
 	WAAdmin defaultServerManager startAll.
 	WAAdmin defaultDispatcher defaultName: 'payroll'.
-	
-	Smalltalk snapshot: false andQuit: false.
+
+	Smalltalk snapshot: false andQuit: false
 
 ]
