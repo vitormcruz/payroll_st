@@ -16,7 +16,7 @@ PayrollMain >> activate [
 	
 	adaptor := ZnZincServerAdaptor new. "Self registered..."
 	
-	adaptor port: (Smalltalk os environment at: #PORT ifAbsent: 8080) .
+	adaptor port: (Smalltalk os environment at: #PORT ifAbsent: 8080) asInteger.
 	WAAdmin defaultServerManager startAll.
 	WAAdmin defaultDispatcher defaultName: 'payroll'.
 
