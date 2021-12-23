@@ -12,13 +12,16 @@ PayrollMain class >> commandName [
 { #category : #initialization }
 PayrollMain class >> initialize [ 
 
-	 ServiceLocatorConextVar default: PayrollServiceLocatorProduction new.
+	 PayrollServiceLocator default: PayrollServiceLocatorProduction new.
 ]
 
 { #category : #activation }
 PayrollMain >> activate [
 
 	| adaptor |
+	
+
+	 PayrollServiceLocatorVar default: PayrollServiceLocatorProduction new.
 	
 	adaptor := ZnZincServerAdaptor new. "Self registered..."
 	

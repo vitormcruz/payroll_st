@@ -10,5 +10,5 @@ Class {
 { #category : #accessing }
 PayrollServiceLocator >> employeeRepository [
 
-	^ employeeRepository
+	self subclassResponsibility.
 ]

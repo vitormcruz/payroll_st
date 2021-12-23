@@ -32,7 +32,7 @@ BaselineOfPayroll >> baseline: spec [
 		package: 'Payroll-Config' with: [ spec requires: #('Payroll-Core' 'Payroll-Adapter') ];
 		
 		package: 'Payroll-Tests' with: [ spec requires: #('Payroll-Core' 'Buoy-Tests') ];
-		package: 'Payroll-AcceptanceCriteria' with: [ spec requires: #('Payroll-Core' 'Buoy-Tests' 'Tome') ];
+		package: 'Payroll-AcceptanceCriteria' with: [ spec requires: #('Payroll-Core' 'Buoy-Tests' 'Tome' 'Payroll-Tests') ];
 		
 		group: 'default' with: #('dev');
 		group: 'core' with: #('Payroll-Config');
