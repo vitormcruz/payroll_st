@@ -6,6 +6,8 @@ So that they I can pay them properly for their work, nothing more, nothing less.
 Class {
 	#name : #ManageEmployees,
 	#superclass : #TomeFeature,
+	#traits : 'TPayrollIntegrationTestBase',
+	#classTraits : 'TPayrollIntegrationTestBase classTrait',
 	#instVars : [
 		'employeeRepository'
 	],
@@ -23,7 +25,7 @@ ManageEmployees >> Add_a_new_employee [
 				  Then Jhon becomes part of it
 				  And when I look for "999-888-777" the Payroll System finds "John"'
 		  run: [ :newEmpName :newEmpSSN :expectedSSN :expectedEmpName  |
-		      employeeRepository add: (Employee newNamed: newEmpName
+		      (self service: #employeeRepository) add: (Employee newNamed: newEmpName
 		                                        havingSSN: newEmpSSN
 						                            livingAt: 'Street1'
                  						             withEmail: 'john2121@email.com.br'
@@ -31,4 +33,10 @@ ManageEmployees >> Add_a_new_employee [
       							                      andWithDeliveryType: PaymasterDelivery new).
 			
 		  ].
+]
+
+{ #category : #initialization }
+ManageEmployees >> initialize [ 
+
+	super initialize.
 ]

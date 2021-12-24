@@ -1,7 +1,7 @@
 Class {
 	#name : #PayrollServiceLocatorForTest,
 	#superclass : #PayrollServiceLocatorProduction,
-	#category : #'Payroll-Tests'
+	#category : #'Payroll-Tests-Util'
 }
 
 { #category : #accessing }

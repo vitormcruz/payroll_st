@@ -1,20 +1,13 @@
-Class {
-	#name : #IntegrationTestBase,
-	#superclass : #TestCase,
+Trait {
+	#name : #TPayrollIntegrationTestBase,
 	#traits : 'TServiceLocatorAwareTestCaseTrait',
 	#classTraits : 'TServiceLocatorAwareTestCaseTrait classTrait',
 	#category : #'Payroll-Tests-Util'
 }
 
-{ #category : #'as yet unclassified' }
-IntegrationTestBase class >> isAbstract [ 
-
-	^ self name = #IntegrationTestBase
-
-]
-
 { #category : #initialization }
-IntegrationTestBase >> initialize [ 
-	
+TPayrollIntegrationTestBase >> initialize [ 
+
+	super initialize.
 	self serviceLocator_for_IntegrationTest: PayrollServiceLocatorForTest new.
 ]
