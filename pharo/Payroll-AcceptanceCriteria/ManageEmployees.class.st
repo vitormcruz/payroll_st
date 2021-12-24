@@ -34,9 +34,3 @@ ManageEmployees >> Add_a_new_employee [
 			
 		  ].
 ]
-
-{ #category : #initialization }
-ManageEmployees >> initialize [ 
-
-	super initialize.
-]
