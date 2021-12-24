@@ -9,12 +9,6 @@ PayrollMain class >> commandName [
 	^ 'startPayroll'
 ]
 
-{ #category : #initialization }
-PayrollMain class >> initialize [ 
-
-	 PayrollServiceLocator default: PayrollServiceLocatorProduction new.
-]
-
 { #category : #activation }
 PayrollMain >> activate [
 
