@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #initialization }
-PayrollWebPage class >> initialize [ 
+PayrollWebPage class >> register_me_as_root_on_server [
 
 	WAAdmin unregister: 'welcome'.
 	self registerToDevelopment: 'payroll'.

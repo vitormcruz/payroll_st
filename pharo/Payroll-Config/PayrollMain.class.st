@@ -15,7 +15,9 @@ PayrollMain >> activate [
 	| adaptor |
 	
 
-	 PayrollServiceLocatorVar default: PayrollServiceLocatorProduction new.
+	PayrollServiceLocatorVar default: PayrollServiceLocatorProduction new.
+	
+	PayrollWebPage register_me_as_root_on_server.
 	
 	adaptor := ZnZincServerAdaptor new. "Self registered..."
 	

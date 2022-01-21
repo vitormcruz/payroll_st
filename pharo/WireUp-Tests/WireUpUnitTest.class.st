@@ -1,0 +1,79 @@
+Class {
+	#name : #WireUpUnitTest,
+	#superclass : #TestCase,
+	#instVars : [
+		'wireUp'
+	],
+	#category : #'WireUp-Tests'
+}
+
+{ #category : #running }
+WireUpUnitTest >> setUp [
+	super setUp.
+	wireUp	 := WireUp new.
+
+]
+
+{ #category : #'test simple registering' }
+WireUpUnitTest >> test_default_name_for_registered_object [
+
+   wireUp register: WireTestObjectA.
+   self assert: (wireUp hasObjectNamed: 'wireTestObjectA')
+]
+
+{ #category : #'test simple registering' }
+WireUpUnitTest >> test_name_specified_for_registered_object [
+
+   wireUp register: WireTestObjectA named: 'someOtherName'.
+   self assert: (wireUp hasObjectNamed: 'someOtherName')
+]
+
+{ #category : #'test simple registering' }
+WireUpUnitTest >> test_register_same_class_twice_using_default_and_custom_name [
+
+   wireUp register: WireTestObjectA.
+   wireUp register: WireTestObjectA named: 'someOtherName'.
+	self assert: (wireUp hasObjectNamed: 'wireTestObjectA').
+	self assert: (wireUp hasObjectNamed: 'someOtherName')
+
+]
+
+{ #category : #'test coliding name' }
+WireUpUnitTest >> test_register_same_class_twice_using_default_name [
+
+   wireUp register: WireTestObjectA.
+	self should: [ wireUp register: WireTestObjectA ] 
+		  raise: Error 
+		  withExceptionDo: [ :ex | ex messageText =  'wireTestObjectA is already used as name of a wirable object'].
+
+]
+
+{ #category : #'test coliding name' }
+WireUpUnitTest >> test_register_same_name_twice_with_two_different_classes [
+
+   wireUp register: WireTestObjectA named: 'Name'.
+
+	self should: [ wireUp register: WireTestObjectB named: 'Name']
+	     raise: Error
+	     whoseDescriptionIncludes: '"Name" is already used as name of a wirable object'
+		  description: 'Wrong message error'.
+
+]
+
+{ #category : #'test simple registering' }
+WireUpUnitTest >> test_wiring_configured_to_use_object_default_constructor [
+
+	(wireUp register: WireTestObjectA) useDefaultConstructor.
+	self assert: (wireUp get: WireTestObjectA) class equals: WireTestObjectA
+]
+
+{ #category : #'test simple registering' }
+WireUpUnitTest >> test_wiring_object_with_default_constructor_only [
+
+	wireUp register: WireTestObjectA.
+	self should: [ wireUp get: WireTestObjectA ] 
+		  raise: Error 
+		  whoseDescriptionIncludes: 'wireTestObjectA don''t have a tailored constructor'
+		  description: 'Error didin''t happend as expected'.
+	
+]
