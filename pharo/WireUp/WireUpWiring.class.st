@@ -21,6 +21,23 @@ WireUpWiring >> class: aClass [
 	class := aClass.
 ]
 
+{ #category : #'as yet unclassified' }
+WireUpWiring >> constructorCaller [
+
+	| selectedContructor constructorArgs |
+
+	constructorArgs := OrderedCollection new.	
+	selectedContructor := class class findConstructorForWiring.
+	
+	selectedContructor argumentNames ifNotEmpty: [ :args | 
+		[ wireUpObject get: (args at: 1) ]
+			on: KeyNotFound
+			do: [ Error signal: 'No constructor matches wire up settings.' ] 
+	].
+		
+	^ selectedContructor valueWithReceiver: class arguments: constructorArgs asArray
+]
+
 { #category : #'instance creation' }
 WireUpWiring >> context: anWireUpObject [
 
@@ -37,7 +54,7 @@ WireUpWiring >> getWiredObject [
 { #category : #initialization }
 WireUpWiring >> initialize [ 
 
-	instantiationStrategy := [ Error signal: class nameForWring, ' don''t have a tailored constructor' ]
+	instantiationStrategy := [ self constructorCaller ]
 ]
 
 { #category : #configuration }

@@ -6,3 +6,9 @@ Class {
 	#superclass : #Object,
 	#category : #'WireUp-Tests'
 }
+
+{ #category : #'instance creation' }
+WireTestObjectB class >> tailoredConstructor [
+
+	^ self new.
+]

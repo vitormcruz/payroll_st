@@ -60,14 +60,14 @@ WireUpUnitTest >> test_register_same_name_twice_with_two_different_classes [
 
 ]
 
-{ #category : #'test simple registering' }
+{ #category : #'test wire default constructor' }
 WireUpUnitTest >> test_wiring_configured_to_use_object_default_constructor [
 
 	(wireUp register: WireTestObjectA) useDefaultConstructor.
 	self assert: (wireUp get: WireTestObjectA) class equals: WireTestObjectA
 ]
 
-{ #category : #'test simple registering' }
+{ #category : #'test wire default constructor' }
 WireUpUnitTest >> test_wiring_object_with_default_constructor_only [
 
 	wireUp register: WireTestObjectA.
@@ -76,4 +76,24 @@ WireUpUnitTest >> test_wiring_object_with_default_constructor_only [
 		  whoseDescriptionIncludes: 'wireTestObjectA don''t have a tailored constructor'
 		  description: 'Error didin''t happend as expected'.
 	
+]
+
+{ #category : #'test wire tailored constructor' }
+WireUpUnitTest >> test_wiring_object_with_one_tailored_constructor_no_arg [
+
+	wireUp register: WireTestObjectB.
+	self assert: (wireUp get: WireTestObjectB) class equals: WireTestObjectB
+	
+]
+
+{ #category : #'test wire tailored constructor' }
+WireUpUnitTest >> test_wiring_object_with_one_tailored_constructor_one_arg_not_matching [
+
+	wireUp register: WireTestObjectB.
+	wireUp register: WireObjectConstructorOneArg.
+	self should: [ wireUp get: WireObjectConstructorOneArg ] 
+		  raise: Error 
+		  whoseDescriptionIncludes: 'No constructor matches wire up settings.'
+		  description: 'Should throw an error, but didin''t'.
+		
 ]
