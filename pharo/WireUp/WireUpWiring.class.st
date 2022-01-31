@@ -30,7 +30,9 @@ WireUpWiring >> constructorCaller [
 	selectedContructor := class class findConstructorForWiring.
 	
 	selectedContructor argumentNames ifNotEmpty: [ :args | 
-		[ wireUpObject get: (args at: 1) ]
+		[ 
+			constructorArgs add: (wireUpObject get: (args at: 1)).
+		]
 			on: KeyNotFound
 			do: [ Error signal: 'No constructor matches wire up settings.' ] 
 	].
