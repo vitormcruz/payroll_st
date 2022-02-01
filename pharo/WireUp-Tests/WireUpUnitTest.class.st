@@ -102,7 +102,21 @@ WireUpUnitTest >> test_wiring_object_with_one_tailored_constructor_one_arg_not_m
 	wireUp register: WireObjectConstructorUnknownArg.
 	self should: [ wireUp get: WireObjectConstructorUnknownArg ] 
 		  raise: Error 
-		  whoseDescriptionIncludes: 'No constructor matches wire up settings.'
+		  whoseDescriptionIncludes: 'No constructor, clasified as "instance creation", matches wire up settings.'
 		  description: 'Should throw an error, but didin''t'.
 		
+]
+
+{ #category : #'test wire tailored constructor' }
+WireUpUnitTest >> test_wiring_object_with_one_tailored_constructor_two_arg_matching [
+
+	| wiredObject |
+	
+	(wireUp register: WireTestObjectA named: 'knownArg1') useDefaultConstructor.
+	wireUp register: WireTestObjectB named: 'knownArg2'.
+	wireUp register: WireObjectConstructor2KnownArg.
+	
+	wiredObject := wireUp get: WireObjectConstructor2KnownArg.
+	self assert: wiredObject knownArg1 class equals: WireTestObjectA.
+	self assert: wiredObject knownArg2 class equals: WireTestObjectB.
 ]
