@@ -46,6 +46,6 @@ WireUp >> register: aClass [
 WireUp >> register: aClass named: aString [ 
 
 	^ registeredClasses at: aString 
-			 			     ifPresent: [ Error signal: aString, '"Name" is already used as name of a wirable object'] 
+			 			     ifPresent: [ Error signal: '"', aString, '" is already used as name of a wirable object' ] 
 							  ifAbsentPut: (self newWiring class: aClass).
 ]

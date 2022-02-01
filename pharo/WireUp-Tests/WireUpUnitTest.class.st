@@ -44,7 +44,7 @@ WireUpUnitTest >> test_register_same_class_twice_using_default_name [
    wireUp register: WireTestObjectA.
 	self should: [ wireUp register: WireTestObjectA ] 
 		  raise: Error 
-		  withExceptionDo: [ :ex | ex messageText =  'wireTestObjectA is already used as name of a wirable object'].
+		  withExceptionDo: [ :ex | self assert: ex messageText equals: '"wireTestObjectA" is already used as name of a wirable object' ].
 
 ]
 
@@ -53,7 +53,7 @@ WireUpUnitTest >> test_register_same_name_twice_with_two_different_classes [
 
    wireUp register: WireTestObjectA named: 'Name'.
 
-	self should: [ wireUp register: WireTestObjectB named: 'Name']
+	self should: [ wireUp register: WireTestObjectB named: 'Name' ]
 	     raise: Error
 	     whoseDescriptionIncludes: '"Name" is already used as name of a wirable object'
 		  description: 'Wrong message error'.
@@ -92,6 +92,17 @@ WireUpUnitTest >> test_wiring_object_with_one_tailored_constructor_one_arg_match
 	wireUp register: WireTestObjectB named: 'knownArg'.
 	wireUp register: WireObjectConstructorKnownArg.
 	self assert: ((wireUp get: WireObjectConstructorKnownArg) knownArg) class equals: WireTestObjectB
+		
+]
+
+{ #category : #'test wire tailored constructor' }
+WireUpUnitTest >> test_wiring_object_with_one_tailored_constructor_one_arg_matching_but_incorrect_method_protocol [
+
+	wireUp register: WireTestObjectB named: 'knownArg'.
+	wireUp register: WireObjectConstructorKnownArgIncorrectProtocol.
+	self should: [ wireUp get: WireObjectConstructorKnownArgIncorrectProtocol ] 
+		  raise: Error 
+		  withExceptionDo: [ :ex | self assert: ex messageText equals: 'wireObjectConstructorKnownArgIncorrectProtocol don''t have a tailored constructor' ].
 		
 ]
 
