@@ -4,8 +4,8 @@ Class {
 	#instVars : [
 		'registeredClasses',
 		'instantiationStrategy',
-		'wireUpObject',
-		'class'
+		'class',
+		'wiringContext'
 	],
 	#category : #WireUp
 }
@@ -21,27 +21,10 @@ WireUpWiring >> class: aClass [
 	class := aClass.
 ]
 
-{ #category : #'as yet unclassified' }
-WireUpWiring >> constructorCaller [
-
-	| selectedContructor constructorArgs |
-
-	constructorArgs := OrderedCollection new.	
-	selectedContructor := class class findConstructorForWiring.
-	
-	selectedContructor argumentNames ifNotEmpty: [ :args | 
-		[ constructorArgs addAll: (args collect: [ :arg | wireUpObject get: arg ]) ]
-			on: KeyNotFound
-			do: [ Error signal: 'No constructor, clasified as "instance creation", matches wire up settings.' ] 
-	].
-		
-	^ selectedContructor valueWithReceiver: class arguments: constructorArgs asArray
-]
-
 { #category : #'instance creation' }
 WireUpWiring >> context: anWireUpObject [
 
-	wireUpObject := anWireUpObject.
+	wiringContext := anWireUpObject.
 
 ]
 
@@ -54,7 +37,7 @@ WireUpWiring >> getWiredObject [
 { #category : #initialization }
 WireUpWiring >> initialize [ 
 
-	instantiationStrategy := [ self constructorCaller ]
+	instantiationStrategy := [ self wireUpObjectInstance ]
 ]
 
 { #category : #configuration }
@@ -62,4 +45,21 @@ WireUpWiring >> useDefaultConstructor [
 
 	instantiationStrategy := [ class new ].
 	
+]
+
+{ #category : #wiring }
+WireUpWiring >> wireUpObjectInstance [
+
+	| selectedContructor constructorArgs |
+
+	constructorArgs := OrderedCollection new.	
+	selectedContructor := class class findConstructorForWiring.
+	
+	selectedContructor argumentNames ifNotEmpty: [ :args | 
+		[ constructorArgs addAll: (args collect: [ :arg | wiringContext get: arg ]) ]
+			on: KeyNotFound
+			do: [ Error signal: 'No constructor, clasified as "instance creation", matches wire up settings.' ] 
+	].
+		
+	^ selectedContructor valueWithReceiver: class arguments: constructorArgs asArray
 ]

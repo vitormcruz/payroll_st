@@ -1,0 +1,43 @@
+Class {
+	#name : #WireObjectConstructor3KnownArg,
+	#superclass : #Object,
+	#instVars : [
+		'knownArg1',
+		'knownArg2',
+		'knownArg3'
+	],
+	#category : #'WireUp-Tests'
+}
+
+{ #category : #'instance creation' }
+WireObjectConstructor3KnownArg class >> tailoredConstructorKownArg: knownArg1 kownArg2: knownArg2 knownArg3: knownArg3 [
+
+	^ self new knownArg1: knownArg1 knownArg2: knownArg2 knownArg3: knownArg3.
+]
+
+{ #category : #accessing }
+WireObjectConstructor3KnownArg >> knownArg1 [
+
+	^ knownArg1
+]
+
+{ #category : #'as yet unclassified' }
+WireObjectConstructor3KnownArg >> knownArg1: aKnownArg1 knownArg2: aKnownArg2 knownArg3: aKnownArg3 [
+
+	knownArg1 := aKnownArg1.
+	knownArg2 := aKnownArg2.
+	knownArg3 := aKnownArg3.
+
+]
+
+{ #category : #accessing }
+WireObjectConstructor3KnownArg >> knownArg2 [
+
+	^ knownArg2
+]
+
+{ #category : #accessing }
+WireObjectConstructor3KnownArg >> knownArg3 [
+
+	^ knownArg3
+]

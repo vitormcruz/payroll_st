@@ -38,7 +38,7 @@ WireUp >> newWiring [
 { #category : #registering }
 WireUp >> register: aClass [ 
 
-	^ self register: aClass named: aClass name uncapitalized.
+	^ self register: aClass named: aClass nameForWring.
 
 ]
 
