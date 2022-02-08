@@ -1,5 +1,5 @@
 Class {
-	#name : #WireObjectConstructorKnownArg,
+	#name : #WupWireObjectConstructorKnownArg,
 	#superclass : #Object,
 	#instVars : [
 		'knownArg'
@@ -8,18 +8,18 @@ Class {
 }
 
 { #category : #'instance creation' }
-WireObjectConstructorKnownArg class >> tailoredConstructorKownArg: knownArg [
+WupWireObjectConstructorKnownArg class >> tailoredConstructorKownArg: knownArg [
 
 	^ self new knownArg: knownArg.
 
 ]
 
 { #category : #accessors }
-WireObjectConstructorKnownArg >> knownArg [
+WupWireObjectConstructorKnownArg >> knownArg [
 	^ knownArg.
 ]
 
 { #category : #accessors }
-WireObjectConstructorKnownArg >> knownArg: aKnownArg [
+WupWireObjectConstructorKnownArg >> knownArg: aKnownArg [
 	knownArg := aKnownArg.
 ]

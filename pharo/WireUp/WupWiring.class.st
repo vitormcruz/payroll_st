@@ -1,5 +1,5 @@
 Class {
-	#name : #WireUpWiring,
+	#name : #WupWiring,
 	#superclass : #Object,
 	#instVars : [
 		'registeredClasses',
@@ -11,44 +11,44 @@ Class {
 }
 
 { #category : #'instance creation' }
-WireUpWiring class >> newForContext: anWireUpObject [
+WupWiring class >> newForContext: anWireUpObject [
 
 	^ self new context: anWireUpObject.
 ]
 
 { #category : #configuration }
-WireUpWiring >> class: aClass [ 
+WupWiring >> class: aClass [ 
 	class := aClass.
 ]
 
 { #category : #'instance creation' }
-WireUpWiring >> context: anWireUpObject [
+WupWiring >> context: anWireUpObject [
 
 	wiringContext := anWireUpObject.
 
 ]
 
 { #category : #wiring }
-WireUpWiring >> getWiredObject [
+WupWiring >> getWiredObject [
 
 	^ instantiationStrategy value.
 ]
 
 { #category : #initialization }
-WireUpWiring >> initialize [ 
+WupWiring >> initialize [ 
 
 	instantiationStrategy := [ self wireUpObjectInstance ]
 ]
 
 { #category : #configuration }
-WireUpWiring >> useDefaultConstructor [
+WupWiring >> useDefaultConstructor [
 
 	instantiationStrategy := [ class new ].
 	
 ]
 
 { #category : #wiring }
-WireUpWiring >> wireUpObjectInstance [
+WupWiring >> wireUpObjectInstance [
 
 	| selectedContructor constructorArgs |
 

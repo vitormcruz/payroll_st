@@ -1,5 +1,5 @@
 Class {
-	#name : #WireUp,
+	#name : #WupWiringContext,
 	#superclass : #Object,
 	#instVars : [
 		'registeredClasses'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #wiring }
-WireUp >> get: classOrName [
+WupWiringContext >> get: classOrName [
 
 	| wiring |
 	
@@ -18,32 +18,32 @@ WireUp >> get: classOrName [
 ]
 
 { #category : #access }
-WireUp >> hasObjectNamed: aString [ 
+WupWiringContext >> hasObjectNamed: aString [ 
 
 	^ registeredClasses includesKey: aString.
 ]
 
 { #category : #initialization }
-WireUp >> initialize [ 
+WupWiringContext >> initialize [ 
 	
 	registeredClasses := Dictionary new.
 ]
 
 { #category : #wiring }
-WireUp >> newWiring [
+WupWiringContext >> newWiring [
 
-	^ WireUpWiring newForContext: self.
+	^ WupWiring newForContext: self.
 ]
 
 { #category : #registering }
-WireUp >> register: aClass [ 
+WupWiringContext >> register: aClass [ 
 
 	^ self register: aClass named: aClass nameForWring.
 
 ]
 
 { #category : #registering }
-WireUp >> register: aClass named: aString [ 
+WupWiringContext >> register: aClass named: aString [ 
 
 	^ registeredClasses at: aString 
 			 			     ifPresent: [ Error signal: '"', aString, '" is already used as name of a wirable object' ] 
