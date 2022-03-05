@@ -9,7 +9,7 @@ Class {
 	#category : #'Payroll-Tests'
 }
 
-{ #category : #running }
+{ #category : #'as yet unclassified' }
 TestServiceLocationAwarenessOn >> runCase [
 
 	((self class >> testSelector) 

@@ -15,7 +15,7 @@ PayrollMain >> activate [
 	| adaptor |
 	
 
-	PayrollServiceLocatorVar default: PayrollServiceLocatorProduction new.
+	self configureServices: PayrollWupContextVar value.
 	
 	PayrollWebPage register_me_as_root_on_server.
 	
@@ -27,4 +27,12 @@ PayrollMain >> activate [
 
 	Smalltalk snapshot: false andQuit: false
 
+]
+
+{ #category : #'as yet unclassified' }
+PayrollMain >> configureServices: aWupContext [
+	
+	aWupContext register: RepositoryInMemory named: 'employees'.
+
+	
 ]

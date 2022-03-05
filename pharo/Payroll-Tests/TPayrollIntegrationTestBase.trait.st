@@ -1,13 +1,25 @@
 Trait {
 	#name : #TPayrollIntegrationTestBase,
-	#traits : 'TServiceLocatorAwareTestCaseTrait',
-	#classTraits : 'TServiceLocatorAwareTestCaseTrait classTrait',
+	#instVars : [
+		'testWupContext',
+		'wupContextVar'
+	],
+	#traits : 'TWupContextAwareTestCase',
+	#classTraits : 'TWupContextAwareTestCase classTrait',
 	#category : #'Payroll-Tests-Util'
 }
 
 { #category : #initialization }
-TPayrollIntegrationTestBase >> initialize [ 
+TPayrollIntegrationTestBase >> initialize [
 
 	super initialize.
-	self serviceLocator_for_IntegrationTest: PayrollServiceLocatorForTest new.
+	wupContextVar := PayrollWupContextVar.
+	testWupContext := self testContextBasedOn: PayrollWupContextVar value. 
+
+]
+
+{ #category : #tests }
+TPayrollIntegrationTestBase >> testContextBasedOn: aWupContext [
+
+	^ aWupContext deepCopy.
 ]
