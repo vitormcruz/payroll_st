@@ -1,5 +1,5 @@
 Class {
-	#name : #PayrollWupContextVar,
+	#name : #PayrollWupContextDynVar,
 	#superclass : #DynamicVariable,
 	#instVars : [
 		'defaultWupContext'
@@ -8,25 +8,25 @@ Class {
 }
 
 { #category : #accessing }
-PayrollWupContextVar class >> default: aDefaultServiceLocator [
+PayrollWupContextDynVar class >> default: aDefaultServiceLocator [
 
 	self soleInstance default: aDefaultServiceLocator.
 ]
 
 { #category : #accessing }
-PayrollWupContextVar >> default [
+PayrollWupContextDynVar >> default [
 	"Answer the default value for the variable. The default for the default value is nil."
 	^ defaultWupContext.
 ]
 
 { #category : #accessing }
-PayrollWupContextVar >> default: aDefaultWupContext [
+PayrollWupContextDynVar >> default: aDefaultWupContext [
 
 	defaultWupContext := aDefaultWupContext.
 ]
 
 { #category : #initialization }
-PayrollWupContextVar >> initialize [ 
+PayrollWupContextDynVar >> initialize [ 
 
 	defaultWupContext := WupWiringContext new.
 ]

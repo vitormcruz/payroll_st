@@ -15,7 +15,7 @@ PayrollMain >> activate [
 	| adaptor |
 	
 
-	self configureServices: PayrollWupContextVar value.
+	self configureServices: PayrollWupContextDynVar value.
 	
 	PayrollWebPage register_me_as_root_on_server.
 	

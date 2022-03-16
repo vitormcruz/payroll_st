@@ -2,7 +2,8 @@ Trait {
 	#name : #TPayrollIntegrationTestBase,
 	#instVars : [
 		'testWupContext',
-		'wupContextVar'
+		'wupContextDynVar',
+		'wupTestContext'
 	],
 	#traits : 'TWupContextAwareTestCase',
 	#classTraits : 'TWupContextAwareTestCase classTrait',
@@ -13,13 +14,24 @@ Trait {
 TPayrollIntegrationTestBase >> initialize [
 
 	super initialize.
-	wupContextVar := PayrollWupContextVar.
-	testWupContext := self testContextBasedOn: PayrollWupContextVar value. 
-
+	
+	wupTestContext := self testContextBasedOn: self wupContextDynVar value.
 ]
 
 { #category : #tests }
 TPayrollIntegrationTestBase >> testContextBasedOn: aWupContext [
 
 	^ aWupContext deepCopy.
+]
+
+{ #category : #accessing }
+TPayrollIntegrationTestBase >> wupProdContextDynVar [
+
+	^ PayrollWupContextDynVar.
+]
+
+{ #category : #accessing }
+TPayrollIntegrationTestBase >> wupTestContext [
+
+	^ wupContextDynVar.
 ]

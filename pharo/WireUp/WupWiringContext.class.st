@@ -8,6 +8,18 @@ Class {
 }
 
 { #category : #wiring }
+WupWiringContext >> fillExisting: anObject [
+
+	(anObject class allInstVarNames) do: [ :instVarName | 
+		[ 
+			anObject instVarNamed: instVarName put: (self get: instVarName).
+		] on: KeyNotFound do: [].
+	].
+	
+	^ anObject.
+]
+
+{ #category : #wiring }
 WupWiringContext >> get: classOrName [
 
 	| wiring |

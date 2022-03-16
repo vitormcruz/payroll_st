@@ -37,7 +37,8 @@ WupWiring >> getWiredObject [
 { #category : #initialization }
 WupWiring >> initialize [ 
 
-	instantiationStrategy := [ self wireUpObjectInstance ]
+	instantiationStrategy := [ self wireNewInstance ].
+
 ]
 
 { #category : #configuration }
@@ -48,7 +49,7 @@ WupWiring >> useDefaultConstructor [
 ]
 
 { #category : #wiring }
-WupWiring >> wireUpObjectInstance [
+WupWiring >> wireNewInstance [
 
 	| selectedContructor constructorArgs |
 

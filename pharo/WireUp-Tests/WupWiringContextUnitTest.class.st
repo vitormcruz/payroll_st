@@ -60,6 +60,17 @@ WupWiringContextUnitTest >> test_register_same_name_twice_with_two_different_cla
 
 ]
 
+{ #category : #'test wire existing object' }
+WupWiringContextUnitTest >> test_wireUp_existing_object [
+
+	| obj |
+	
+	wireUp register: WupWireTestObjectB named: 'knownArg'.
+	obj := WupWireObjectConstructorKnownArg new.
+	wireUp fillExisting: obj.
+	self assert: obj knownArg class equals: WupWireTestObjectB.
+]
+
 { #category : #'test wire default constructor' }
 WupWiringContextUnitTest >> test_wiring_configured_to_use_object_default_constructor [
 
