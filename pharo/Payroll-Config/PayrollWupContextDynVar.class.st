@@ -29,6 +29,6 @@ PayrollWupContextDynVar >> default: aDefaultWupContext [
 PayrollWupContextDynVar >> initialize [ 
 
 	defaultWupContext := WupWiringContext new.
-	defaultWupContext register: RepositoryInMemory named: 'employeesRepository'.
+	(defaultWupContext register: RepositoryInMemory named: 'employeeRepository') useDefaultConstructor.
 
 ]
