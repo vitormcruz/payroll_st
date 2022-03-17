@@ -25,7 +25,7 @@ ManageEmployees >> Add_a_new_employee [
 				  Then Jhon becomes part of it
 				  And when I look for "999-888-777" the Payroll System finds "John"'
 		  run: [ :newEmpName :newEmpSSN :expectedSSN :expectedEmpName  |
-		      (self service: #employeeRepository) add: (Employee newNamed: newEmpName
+		      employeeRepository add: (Employee newNamed: newEmpName
 		                                        havingSSN: newEmpSSN
 						                            livingAt: 'Street1'
                  						             withEmail: 'john2121@email.com.br'
@@ -33,4 +33,11 @@ ManageEmployees >> Add_a_new_employee [
       							                      andWithDeliveryType: PaymasterDelivery new).
 			
 		  ].
+]
+
+{ #category : #'as yet unclassified' }
+ManageEmployees >> initialize [
+
+	super initialize.
+	self initializeIntTrait.
 ]

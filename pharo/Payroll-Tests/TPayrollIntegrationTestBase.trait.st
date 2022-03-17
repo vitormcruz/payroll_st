@@ -1,7 +1,6 @@
 Trait {
 	#name : #TPayrollIntegrationTestBase,
 	#instVars : [
-		'testWupContext',
 		'wupContextDynVar',
 		'wupTestContext'
 	],
@@ -11,17 +10,22 @@ Trait {
 }
 
 { #category : #initialization }
-TPayrollIntegrationTestBase >> initialize [
-
-	super initialize.
+TPayrollIntegrationTestBase >> initializeIntTrait [
 	
-	wupTestContext := self testContextBasedOn: self wupContextDynVar value.
+	wupTestContext := self new_wup_test_context_based_on: (self wupProdContextDynVar value).
+]
+
+{ #category : #private }
+TPayrollIntegrationTestBase >> instanceVariablesToKeep [
+
+
+	^ super instanceVariablesToKeep, #( 'wupTestContext' 'wupContextDynVar' ).
 ]
 
 { #category : #tests }
-TPayrollIntegrationTestBase >> testContextBasedOn: aWupContext [
+TPayrollIntegrationTestBase >> new_wup_test_context_based_on: wireContext [
 
-	^ aWupContext deepCopy.
+	^ wireContext clone.
 ]
 
 { #category : #accessing }
@@ -33,5 +37,5 @@ TPayrollIntegrationTestBase >> wupProdContextDynVar [
 { #category : #accessing }
 TPayrollIntegrationTestBase >> wupTestContext [
 
-	^ wupContextDynVar.
+	^ wupTestContext.
 ]

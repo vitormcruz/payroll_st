@@ -1,6 +1,9 @@
 Class {
 	#name : #PayrollMain,
 	#superclass : #CommandLineHandler,
+	#instVars : [
+		'wirebleObjectsConfigured'
+	],
 	#category : #'Payroll-Config'
 }
 
@@ -14,9 +17,6 @@ PayrollMain >> activate [
 
 	| adaptor |
 	
-
-	self configureServices: PayrollWupContextDynVar value.
-	
 	PayrollWebPage register_me_as_root_on_server.
 	
 	adaptor := ZnZincServerAdaptor new. "Self registered..."
@@ -29,10 +29,18 @@ PayrollMain >> activate [
 
 ]
 
-{ #category : #'as yet unclassified' }
-PayrollMain >> configureServices: aWupContext [
+{ #category : #configuration }
+PayrollMain >> configureWirebleObjects: aWupContext [
 	
-	aWupContext register: RepositoryInMemory named: 'employees'.
+	wirebleObjectsConfigured ifTrue: [ ^ self ]. 
+	aWupContext register: RepositoryInMemory named: 'employeesRepository'.
+	wirebleObjectsConfigured := true.
 
 	
+]
+
+{ #category : #initialization }
+PayrollMain >> initialize [
+
+	wirebleObjectsConfigured := false.
 ]

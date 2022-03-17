@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'defaultWupContext'
 	],
-	#category : #'Payroll-Core'
+	#category : #'Payroll-Config'
 }
 
 { #category : #accessing }
@@ -29,4 +29,6 @@ PayrollWupContextDynVar >> default: aDefaultWupContext [
 PayrollWupContextDynVar >> initialize [ 
 
 	defaultWupContext := WupWiringContext new.
+	defaultWupContext register: RepositoryInMemory named: 'employeesRepository'.
+
 ]
