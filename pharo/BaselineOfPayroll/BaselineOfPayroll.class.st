@@ -30,13 +30,15 @@ BaselineOfPayroll >> baseline: spec [
 		package: 'Payroll-Core';
 		package: 'Payroll-Adapter' with: [ spec requires: #('Seaside-Core' 'MaterialDesignLite') ];
 		package: 'Payroll-Config' with: [ spec requires: #('Payroll-Core' 'Payroll-Adapter') ];
+		package: 'WireUp';
+		package: 'WireUp-Tests' with: [ spec requires: #('WireUp') ];
 		
 		package: 'Payroll-Tests' with: [ spec requires: #('Payroll-Core' 'Buoy-Tests') ];
 		package: 'Payroll-AcceptanceCriteria' with: [ spec requires: #('Payroll-Core' 'Buoy-Tests' 'Tome' 'Payroll-Tests') ];
 		
 		group: 'default' with: #('dev');
-		group: 'core' with: #('Payroll-Config');
-		group: 'test' with: #(core 'Payroll-Tests' 'Payroll-AcceptanceCriteria');
+		group: 'core' with: #('Payroll-Config' 'WireUp');
+		group: 'test' with: #(core 'Payroll-Tests' 'Payroll-AcceptanceCriteria' 'WireUp-Tests');
 		group: 'dev' with: #(test 'Seaside-Dev')
 	].
 		
