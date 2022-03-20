@@ -4,7 +4,7 @@ Metacello new
 	onConflict: [ :ex :pa :pb |
 		((pb repositoryDescriptions joinUsing: ' ')
 			includesSubstring: 'Seaside:v3.4.5') ifTrue: [ ex useIncoming  ] 
-												 ifTrue: [ ex useLoaded  ]
+												 ifFalse: [ ex useLoaded  ]
 	];
 	onUpgrade: [ :ex | ex useIncoming ];
 	onDowngrade: [ :ex | ex useLoaded ];
