@@ -46,11 +46,11 @@ jobs:
           name: payroll-st-web-bin
           path: /opt/                 #Should be /opt/pharo/, but will use a new image since Metacello cannot load Baselines incrementally. Will think later what to do about this
 
-      - name: Load Tests
-        run: pharo /opt/pharo/Pharo.image st --save --quit loadForTesting.st;
-
-      - name: Run Tests of Payroll ST WEB
-        run: pharo /opt/pharo/Pharo.image test Payroll* --junit-xml-output --fail-on-failure --fail-on-error;
+#      - name: Load Tests
+#        run: pharo /opt/pharo/Pharo.image st --save --quit loadForTesting.st;
+#
+#      - name: Run Tests of Payroll ST WEB
+#        run: pharo /opt/pharo/Pharo.image test Payroll* --junit-xml-output --fail-on-failure --fail-on-error;
 
   Deploy:
       runs-on: ubuntu-latest

@@ -1,8 +1,11 @@
 FROM vitormcruz/pharo:9 as Generate_Pharo_Image
 
-COPY ../pharo pharo
+COPY . /payroll-st/
 
-RUN pharo /opt/pharo/Pharo.image eval --save "Metacello new repository: 'tonel://pharo'; baseline: 'Payroll'; onConflictUseIncoming; load: #(core)"; \
+RUN cd payroll-st/; \
+    ls -la
+
+RUN /opt/pharo/pharo /opt/pharo/Pharo.image st --save --quit loadForTesting.st; \
     pharo /opt/pharo/Pharo.image clean --production --save;
 
 FROM vitormcruz/pharo:9
