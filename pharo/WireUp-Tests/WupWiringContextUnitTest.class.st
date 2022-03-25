@@ -71,21 +71,32 @@ WupWiringContextUnitTest >> test_wireUp_existing_object [
 	self assert: obj knownArg class equals: WupWireTestObjectB.
 ]
 
-{ #category : #'test wire default constructor' }
+{ #category : #'test wire default behavior' }
 WupWiringContextUnitTest >> test_wiring_configured_to_use_object_default_constructor [
 
 	(wireUp register: WupWireTestObjectA) useDefaultConstructor.
 	self assert: (wireUp get: WupWireTestObjectA) class equals: WupWireTestObjectA
 ]
 
-{ #category : #'test wire default constructor' }
+{ #category : #'test wire default behavior' }
+WupWiringContextUnitTest >> test_wiring_default_to_singleton [
+
+	| singletonExpectedObject |
+	
+	(wireUp register: WupWireTestObjectA) useDefaultConstructor.
+	singletonExpectedObject := wireUp get: WupWireTestObjectA.
+	self assert: (wireUp get: WupWireTestObjectA) identicalTo: singletonExpectedObject.
+
+]
+
+{ #category : #'test wire default behavior' }
 WupWiringContextUnitTest >> test_wiring_object_with_default_constructor_only [
 
 	wireUp register: WupWireTestObjectA.
 	self should: [ wireUp get: WupWireTestObjectA ] 
 		  raise: Error 
 		  whoseDescriptionIncludes: 'wupWireTestObjectA don''t have a tailored constructor'
-		  description: 'Error didin''t happend as expected'.
+		  description: 'Error didn''t happend as expected'.
 	
 ]
 

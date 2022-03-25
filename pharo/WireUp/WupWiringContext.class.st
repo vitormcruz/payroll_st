@@ -1,3 +1,22 @@
+"
+I am the Context where all wiring configurations are kept. 
+
+All basic usage of WireUp framework can be learned here.
+
+# Usage
+
+""Creates a context""
+| context |
+context := WupWiringContext new.
+
+""Register ""
+
+context register: 
+
+
+
+
+"
 Class {
 	#name : #WupWiringContext,
 	#superclass : #Object,

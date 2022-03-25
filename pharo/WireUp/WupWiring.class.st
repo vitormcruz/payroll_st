@@ -2,10 +2,11 @@ Class {
 	#name : #WupWiring,
 	#superclass : #Object,
 	#instVars : [
-		'registeredClasses',
-		'instantiationStrategy',
 		'class',
-		'wiringContext'
+		'wiringContext',
+		'singletonObject',
+		'retationCmd',
+		'instantiationCmd'
 	],
 	#category : #WireUp
 }
@@ -31,20 +32,21 @@ WupWiring >> context: anWireUpObject [
 { #category : #wiring }
 WupWiring >> getWiredObject [
 
-	^ instantiationStrategy value.
+	^ retationCmd value.
 ]
 
 { #category : #initialization }
 WupWiring >> initialize [ 
 
-	instantiationStrategy := [ self wireNewInstance ].
+	retationCmd := [ singletonObject ifNil: [ singletonObject := instantiationCmd value ] ].
+	instantiationCmd := [ self wireNewInstance ].
 
 ]
 
 { #category : #configuration }
 WupWiring >> useDefaultConstructor [
 
-	instantiationStrategy := [ class new ].
+	instantiationCmd := [ class new ].
 	
 ]
 
