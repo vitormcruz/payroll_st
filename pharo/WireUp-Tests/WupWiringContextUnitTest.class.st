@@ -79,7 +79,18 @@ WupWiringContextUnitTest >> test_wiring_configured_to_use_object_default_constru
 ]
 
 { #category : #'test wire default behavior' }
-WupWiringContextUnitTest >> test_wiring_default_to_singleton [
+WupWiringContextUnitTest >> test_wiring_default_retation_only [
+
+	| singletonExpectedObject |
+	
+	wireUp register: WupWireTestObjectB.
+	singletonExpectedObject := wireUp get: WupWireTestObjectB.
+	self assert: (wireUp get: WupWireTestObjectB) identicalTo: singletonExpectedObject.
+
+]
+
+{ #category : #'test wire default behavior' }
+WupWiringContextUnitTest >> test_wiring_defaults [
 
 	| singletonExpectedObject |
 	
