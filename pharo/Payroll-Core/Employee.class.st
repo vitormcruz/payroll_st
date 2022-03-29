@@ -1,13 +1,15 @@
 Class {
 	#name : #Employee,
 	#superclass : #Object,
+	#traits : 'EntityPattern',
+	#classTraits : 'EntityPattern classTrait',
 	#instVars : [
-		'ssn',
-		'name',
-		'address',
-		'email',
-		'paymentMethod',
-		'paymentDeliveryType'
+		'#ssn',
+		'#name',
+		'#address',
+		'#email',
+		'#paymentMethod',
+		'#paymentDeliveryType'
 	],
 	#category : #'Payroll-Core'
 }
@@ -16,6 +18,13 @@ Class {
 Employee class >> newNamed: aString havingSSN: anInteger livingAt: aString3 withEmail: aString4 payed: aFullBlockClosure andWithDeliveryType: aPaymasterDelivery [ 
 
 	^ self new newNamed: aString havingSSN: anInteger livingAt: aString3 withEmail: aString4 payed: aFullBlockClosure andWithDeliveryType: aPaymasterDelivery.
+]
+
+{ #category : #initialization }
+Employee >> initialize [
+	
+	self class initializeSlots: self.
+	super initialize.
 ]
 
 { #category : #'instance initialization' }

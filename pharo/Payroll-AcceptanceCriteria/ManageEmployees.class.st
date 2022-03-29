@@ -35,7 +35,7 @@ ManageEmployees >> Add_a_new_employee [
 		  ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 ManageEmployees >> initialize [
 
 	super initialize.

@@ -19,7 +19,7 @@ TWupContextAwareTestCase >> instanceVariablesToKeep [
 	^ super instanceVariablesToKeep, #( 'wupTestContext' ).
 ]
 
-{ #category : #tests }
+{ #category : #initialization }
 TWupContextAwareTestCase >> new_wup_test_context_based_on: wireContext [
 
 	^ wireContext clone.
