@@ -28,17 +28,19 @@ BaselineOfPayroll >> baseline: spec [
   	   baseline: 'MaterialDesignLite'	with: [ spec repository: 'github://DuneSt/MaterialDesignLite:v2.4.1/src'; loads: #(core) ];										
 
 		package: 'WireUp';		
+		package: 'Patterns';
 		package: 'Payroll-Core';
 		package: 'Payroll-Adapter' with: [ spec requires: #('Seaside-Core' 'MaterialDesignLite') ];
-		package: 'Payroll-Config' with: [ spec requires: #('Payroll-Core' 'Payroll-Adapter' 'WireUp') ];
+		package: 'Payroll-Config' with: [ spec requires: #('Payroll-Core' 'Payroll-Adapter' 'WireUp' 'Patterns') ];
 		package: 'WireUp-Tests' with: [ spec requires: #('WireUp') ];
+		package: 'Patterns-Tests' with: [ spec requires: #('Patterns') ];
 		
 		package: 'Payroll-Tests' with: [ spec requires: #('Payroll-Core' 'Buoy-Tests') ];
 		package: 'Payroll-AcceptanceCriteria' with: [ spec requires: #('Payroll-Core' 'Buoy-Tests' 'Tome' 'Payroll-Tests') ];
 		
 		group: 'default' with: #('dev');
 		group: 'core' with: #('Payroll-Config');
-		group: 'test' with: #(core 'Payroll-Tests' 'Payroll-AcceptanceCriteria' 'WireUp-Tests');
+		group: 'test' with: #(core 'Payroll-Tests' 'Payroll-AcceptanceCriteria' 'WireUp-Tests' 'Patterns-Tests');
 		group: 'dev' with: #(test 'Seaside-Dev')
 	].
 		

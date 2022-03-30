@@ -6,6 +6,21 @@ Trait {
 	#category : #Patterns
 }
 
+{ #category : #comparing }
+EntityPattern >> = that [
+
+	that ifNil: [ ^ false ].
+   that == self ifTrue: [ ^ true ].
+	(that class slotNames includes: #id) ifFalse: [ ^ false ].
+   ^ self id = that id.
+]
+
+{ #category : #comparing }
+EntityPattern >> hash [ 
+
+	^ id hash.
+]
+
 { #category : #accessing }
 EntityPattern >> id [
 
@@ -17,10 +32,4 @@ EntityPattern >> initialize [
 	
 	self class initializeSlots: self.
 	super initialize.
-]
-
-{ #category : #'as yet unclassified' }
-EntityPattern >> teste [
-
-	^ self class.
 ]
