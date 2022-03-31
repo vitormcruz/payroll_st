@@ -8,9 +8,9 @@ Class {
 }
 
 { #category : #accessing }
-PayrollWupContextDynVar class >> default: aDefaultServiceLocator [
+PayrollWupContextDynVar class >> default: aWupContext [
 
-	self soleInstance default: aDefaultServiceLocator.
+	self soleInstance default: aWupContext.
 ]
 
 { #category : #accessing }

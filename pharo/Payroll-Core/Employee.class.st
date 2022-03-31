@@ -20,11 +20,29 @@ Employee class >> newNamed: aString havingSSN: anInteger livingAt: aString3 with
 	^ self new newNamed: aString havingSSN: anInteger livingAt: aString3 withEmail: aString4 payed: aFullBlockClosure andWithDeliveryType: aPaymasterDelivery.
 ]
 
+{ #category : #accessing }
+Employee >> address [
+
+	^ address
+]
+
+{ #category : #accessing }
+Employee >> email [
+
+	^ email
+]
+
 { #category : #initialization }
 Employee >> initialize [
 	
 	self class initializeSlots: self.
 	super initialize.
+]
+
+{ #category : #accessing }
+Employee >> name [
+
+	^ name
 ]
 
 { #category : #'instance initialization' }
@@ -37,4 +55,22 @@ Employee >> newNamed: empName havingSSN: empSSN livingAt: empAddress withEmail: 
 	 paymentMethod := aPaymentMethodBuilderClosure value: self.
 	 paymentDeliveryType := aPaymentDeliveryTypeBuilderClosure value: self.
 	
+]
+
+{ #category : #accessing }
+Employee >> paymentDeliveryType [
+
+	^ paymentDeliveryType
+]
+
+{ #category : #accessing }
+Employee >> paymentMethod [
+
+	^ paymentMethod
+]
+
+{ #category : #accessing }
+Employee >> ssn [
+
+	^ ssn
 ]

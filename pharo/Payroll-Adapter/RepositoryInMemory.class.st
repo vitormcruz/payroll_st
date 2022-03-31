@@ -1,8 +1,8 @@
 Class {
 	#name : #RepositoryInMemory,
-	#superclass : #OrderedCollection,
+	#superclass : #Set,
 	#instVars : [
-		'id'
+		'entityById'
 	],
 	#category : #'Payroll-Adapter-Persistence'
 }
