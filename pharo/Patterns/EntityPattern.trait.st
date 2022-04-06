@@ -3,7 +3,7 @@ Trait {
 	#instVars : [
 		'#id => InitializedSlot default: [ UUIDGenerator next ]'
 	],
-	#category : #Patterns
+	#category : #'Patterns-prd'
 }
 
 { #category : #comparing }
