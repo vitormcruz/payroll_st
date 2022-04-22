@@ -32,7 +32,7 @@ BaselineOfPayroll >> baseline: spec [
 		package: 'Patterns';
 		package: 'Payroll-Core';
 		package: 'Payroll-Adapter' with: [ spec requires: #('Seaside-Core' 'MaterialDesignLite') ];
-		package: 'Payroll-Config' with: [ spec requires: #('Payroll-Core' 'Payroll-Adapter' 'WireUp' 'Patterns') ];
+		package: 'Payroll-Config' with: [ spec requires: #('Payroll-Core' 'Payroll-Adapter' 'WireUp' 'Patterns' 'Grease') ];
 		package: 'WireUp-Tests' with: [ spec requires: #('WireUp') ];
 		package: 'Patterns-Tests' with: [ spec requires: #('Patterns') ];
 		
