@@ -20,7 +20,7 @@ BaselineOfPayroll >> baseline: spec [
 		
  	   baseline: 'Tome' with: [ spec repository: 'github://vitormcruz/tome:develop/pharo'; loads: #(core) ];
 	
-		baseline:'Seaside3' with: [ spec repository: 'github://SeasideSt/Seaside:v3.4.5/repository' ];
+		baseline:'Seaside3' with: [ spec repository: 'github://SeasideSt/Seaside:v3.4.7/repository' ];
 		project:'Seaside-Core' copyFrom: 'Seaside3' with: [ spec loads: #('Core' 'JSON' 'Email' 'Javascript' 'JQuery' 'JQueryUI' 'Zinc' ) ];
 		project:'Seaside-Dev' copyFrom: 'Seaside3' with: [ spec loads: #(default) ];
 
