@@ -26,7 +26,8 @@ BaselineOfPayroll >> baseline: spec [
 		project:'Seaside-Dev' copyFrom: 'Seaside3' with: [ spec loads: #(default) ];
 
 		"MaterialDesignLite must be declared after Seaside3 so that the correct version of Grease (1.7.x) is taken, otherwise, version 1.5.0 is taken"
-  	   baseline: 'MaterialDesignLite'	with: [ spec repository: 'github://DuneSt/MaterialDesignLite:v2.4.1/src'; loads: #(core) ];										
+  	   baseline: 'MaterialDesignLite'	with: [ spec repository: 'github://DuneSt/MaterialDesignLite:v2.4.1/src'; loads: #(core) ];	
+		baseline: 'ValidationNotification' with: [ spec repository: 'github://vitormcruz/st_validation_notification:master/pharo'; loads: #(core) ];
 
 		package: 'WireUp';		
 		package: 'Patterns';
@@ -40,7 +41,7 @@ BaselineOfPayroll >> baseline: spec [
 		package: 'Payroll-AcceptanceCriteria' with: [ spec requires: #('Payroll-Core' 'Buoy-Tests' 'Tome' 'Payroll-Tests') ];
 		
 		group: 'default' with: #('dev');
-		group: 'core' with: #('Payroll-Config');
+		group: 'core' with: #('Payroll-Config' 'ValidationNotification');
 		group: 'test' with: #(core 'Payroll-Tests' 'Payroll-AcceptanceCriteria' 'WireUp-Tests' 'Patterns-Tests');
 		group: 'dev' with: #(test 'Seaside-Dev')
 	].

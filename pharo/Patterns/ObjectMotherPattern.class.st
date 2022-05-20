@@ -10,6 +10,13 @@ Class {
 }
 
 { #category : #'instance creation' }
+ObjectMotherPattern class >> of: aClass [
+
+
+	^ super new of: aClass usingBirthScripts: #() andWithPostBirthScript: []
+]
+
+{ #category : #'instance creation' }
 ObjectMotherPattern class >> of: aClass usingBirthScripts: birthScripts andWithPostBirthScript: postBirthScript [
 
 	^ super new of: aClass usingBirthScripts: birthScripts andWithPostBirthScript: postBirthScript
