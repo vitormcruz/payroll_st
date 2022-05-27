@@ -4,10 +4,17 @@ Class {
 	#instVars : [
 		'prop1',
 		'prop2',
-		'prop3'
+		'prop3',
+		'x'
 	],
 	#category : #'Patterns-Tests'
 }
+
+{ #category : #'instance creation' }
+BuildedClassForTest class >> newWithPropX: anObject [
+
+	^ self new x: anObject.
+]
 
 { #category : #accessing }
 BuildedClassForTest >> prop1 [
@@ -43,4 +50,16 @@ BuildedClassForTest >> prop3 [
 BuildedClassForTest >> prop3: anObject [
 
 	prop3 := anObject.
+]
+
+{ #category : #accessing }
+BuildedClassForTest >> x [
+
+	^ x
+]
+
+{ #category : #accessing }
+BuildedClassForTest >> x: anObject [
+
+	x := anObject.
 ]
