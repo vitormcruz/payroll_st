@@ -1,17 +1,8 @@
 Class {
 	#name : #PayrollWebPage,
-	#superclass : #MDLApplication,
+	#superclass : #Object,
 	#category : #'Payroll-Adapter-Seaside'
 }
-
-{ #category : #initialization }
-PayrollWebPage class >> register_me_as_root_on_server [
-
-	WAAdmin unregister: 'welcome'.
-	self registerToDevelopment: 'payroll'.
-	
-
-]
 
 { #category : #rendering }
 PayrollWebPage >> aboutInfoFor: html [
@@ -32,7 +23,6 @@ PayrollWebPage >> aboutInfoFor: html [
 PayrollWebPage >> initialize [
 
 	super initialize.
-	self primaryColor: MDLColor blue secondaryColor: MDLColor green.
 ]
 
 { #category : #rendering }
